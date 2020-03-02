@@ -1,0 +1,219 @@
+$laranja_fraco: rgb(255, 105, 0);
+$laranja_forte: rgb(255, 50, 0);
+$cinza_fraco: rgb(143, 143, 143);
+$cinza_forte: rgb(108, 108, 108);
+
+$navigation_height: 35px;
+$header_block_size: 960px / 6;
+
+$vertical_space: 8px;
+
+$transparencia: 1;
+$branco_trasparencia: rgba(255, 255, 255, $transparencia);
+$preto_trasparencia: rgba(0, 0, 0, $transparencia);
+
+@mixin sombra($cor) {
+	text-shadow: 1px 1px 0px $cor;
+}
+
+@mixin gradiente_link($cor_centro, $cor_fora) {
+	background: radial-gradient($cor_centro, $cor_fora);
+}
+
+@mixin gradiente_tubular($cor_centro, $cor_fora) {
+	background: linear-gradient(left, $cor_fora, $cor_centro, $cor_fora);
+}
+
+@mixin nav_height($height) {
+	height: $height;
+	line-height: $height;
+}
+
+//=====================================================================
+
+@import url('https://fonts.googleapis.com/css?family=Nunito:700');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Nunito', sans-serif;
+	font-size: 12pt;
+	transition: 1s all;
+}
+
+html, body {
+	min-height: 100%;
+}
+
+body {
+	background-color: $cinza_fraco;
+}
+
+.wrapper {
+	max-width: 960px;
+	margin: 0 auto;
+}
+
+nav {
+	margin-top: $vertical_space;
+	margin-bottom: $vertical_space;
+	border: 1px solid black;
+	@include gradiente_tubular($cinza_fraco, $cinza_forte);
+	@include sombra($preto_trasparencia); 
+}
+
+nav ul {
+	font-size: 0;
+	width: 100%;
+	display: table;
+	table-layout: fixed;
+}
+
+nav li {
+	list-style: none;
+	display: table-cell;
+	text-align: center;
+}
+
+nav li:hover {
+	outline: 1px solid;
+	@include gradiente_link($laranja_fraco, $laranja_forte);
+}
+
+nav li a {
+	display: block;
+	color: white;
+	text-decoration: none;
+	@include nav_height($navigation_height);
+}
+
+.vcenter {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+header {
+	border: 1px solid;
+	height: $header_block_size * 3;
+	border: 1px solid;
+	position: relative;
+	background-image: url("../img/001.jpg");
+	background-size: cover;
+}
+
+.title {
+	top: $header_block_size;
+	height: $header_block_size;
+	width: $header_block_size * 2;
+	position: relative;
+	border-top: 1px solid;
+	@include gradiente_link($laranja_fraco, $laranja_forte);
+}
+.title h1 {
+	font-size: 50pt;
+	color: black;
+	text-align: left;
+	line-height: 50px;
+	@include sombra($branco_trasparencia); 
+}
+.title h2 {
+	margin-top: 8px;
+	font-size: 12pt;
+	color: white;
+	text-align: right;
+	@include sombra($preto_trasparencia); 
+}
+
+section h1, .title h2 {
+	text-transform: uppercase;
+}
+
+.orange {
+	color: $laranja_fraco;
+}
+
+.blue {
+	color: skyblue;
+}
+
+//=====================================================================
+
+.line {
+	background-color: black;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	top: 0;
+	left: 0;
+}
+.vertical {
+	height: 100%;
+}
+.horizontal {
+	width: 100%;
+}
+
+@for $i from 1 to 6 {
+	.vertical:nth-child(#{$i}n) {
+		left: $header_block_size * $i;
+	}
+}
+
+@for $i from 1 to 3 {
+	.horizontal:nth-child(#{$i}n) {
+		top: $header_block_size * $i;
+	}
+}
+
+section {
+	color: white;
+	h1 {
+		text-align: center;
+	}
+	main, aside {
+		float: left;
+	}
+	main {
+		position: relative;
+		width: 69%;
+		margin-left: 1%;
+		background-color: $cinza_forte;
+		padding: 20px;
+		box-shadow: inset 0px 0px 7px 7px $cinza_fraco;
+		img {
+			padding: 20px;
+		}
+	}
+	aside {
+		width: 30%;
+		@include gradiente_tubular($cinza_fraco, $cinza_forte);
+		border: 1px solid black;
+		padding: 15px;
+		img {
+			vertical-align: middle;
+		}
+		a {
+			color: white;
+			font-size: 15pt;
+		}
+	}
+	p {
+		margin-top: $vertical_space;
+	}
+}
+
+main div img {
+	width: 100%;
+}
+
+footer {
+	border-top: $vertical_space solid transparent;
+	margin-bottom: $vertical_space;
+	clear: both;
+	text-align: center;
+	font-size: 9pt;
+	font-style: italic;
+}

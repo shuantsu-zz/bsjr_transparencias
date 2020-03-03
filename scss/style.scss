@@ -17,11 +17,11 @@ $preto_trasparencia: rgba(0, 0, 0, $transparencia);
 }
 
 @mixin gradiente_link($cor_centro, $cor_fora) {
-	background: radial-gradient($cor_centro, $cor_fora);
+    background: radial-gradient($cor_centro, $cor_fora);
 }
 
 @mixin gradiente_tubular($cor_centro, $cor_fora) {
-	background: linear-gradient(left, $cor_fora, $cor_centro, $cor_fora);
+    background: linear-gradient(to right, $cor_fora, $cor_centro, $cor_fora);
 }
 
 @mixin nav_height($height) {
